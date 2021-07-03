@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input,
+        button {
+            padding: 10px;
+        }
+
+        body {
+            display: flex;
+            margin: 40px auto;
+            width: 30%;
+            box-shadow: 0 0 10px lightblue;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input id="input" type="text" placeholder="enter todo...">
+        <button id="addNew">+ Add New ToDo</button>
+        <button id="remove">-Clear All</button>
+    </div>
+
+    <div id="main">
+
+    </div>
+    <script>
+        let inp = document.querySelector("#input")
+        let add = document.querySelector("#addNew")
+        let clear = document.querySelector("#remove")
+        let page = document.querySelector("#main")
+        let db = []
+
+        add.addEventListener("click", display)
+        clear.addEventListener("click", cleaner)
+        function display() {
+            if (inp.value && !db.includes(inp.value)) {
+                let newP = document.createElement("p")
+                newP.innerHTML = `@: ${inp.value} :trash`
+                page.appendChild(newP)
+                db.push(inp.value)
+                inp.value = ""
+            } else {
+                alert("item already exists or input box can not be empty")
+            }
+
+        }
+
+        function cleaner() {
+            page.innerHTML = ""
+        }
+    </script>
+</body>
+
+</html>
